@@ -1,5 +1,7 @@
 package com.test.sephoratest.di
 
+import com.test.sephoratest.productslist_feature.data.repository.ProductsRepositoryImpl
+import com.test.sephoratest.productslist_feature.domain.repository.ProductsRepository
 import com.test.sephoratest.shared.data.ApiInterface
 import com.test.sephoratest.shared.data.ApiInterfaceContainer
 import dagger.Module
@@ -16,4 +18,9 @@ object AppModule {
     fun provideOnlineApiInterface(container: ApiInterfaceContainer): ApiInterface {
         return container.provideApiInterface()
     }
+
+    @Provides
+    fun provideProductsRepository(
+        api: ApiInterface
+    ): ProductsRepository = ProductsRepositoryImpl(api)
 }
